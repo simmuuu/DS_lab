@@ -1,0 +1,1050 @@
+PROGRAM OUTCOMES (POs)
+PO1. Engineering Knowledge: Apply the knowledge of mathematics, science, engineering
+fundamentals, and an engineering specialization to the solution ofcomplex engineering problems.
+PO2. Problem Analysis: Identify formulate, review research literature, and analyze complex
+engineering problems reaching substantiated conclusions using first principles of mathematics, natural
+sciences, and engineering sciences
+PO3. Design/Development of solutions: Design solutions for complex engineering problems and
+design system components or processes that meet the specified needs with appropriate consideration
+for the public health and safety, and the cultural, societal, and environmental considerations.
+PO4. Conduct Investigations of Complex problems: Use research-based knowledge and research
+methods including design of experiments, analysis and interpretation of data, and synthesis of the
+information to provide valid conclusions.
+PO5. Modern Tool Usage: Create select, and, apply appropriate techniques, resources, and modern
+engineering and IT tools including prediction and modeling to complex engineering activities with an
+understanding of the limitations.
+PO6. The Engineer and Society: Apply reasoning informed by contextual knowledge to societal,
+health, safety. Legal und cultural issues and the consequent responsibilities relevant to professional
+engineering practice.
+PO7. Environment and Sustainability: Understand the impact of the professional engineering
+solutions in societal and environmental contexts and demonstrate the knowledge of, and need for
+sustainable development.
+PO8. Ethics: Apply ethical principles and commit to professional ethics and responsibilities and norms
+of the engineering practice.
+PO9. Individual and Team Work: Function effectively as an individual, and as a member or leader
+in diverse teams and in multidisciplinary settings.
+PO10. Communication: Communicate effectively on complex engineering activities with the
+engineering community and with society at large, such as, being able to comprehend and write effective
+reports and design documentation, make effective presentations, and give and receive clear instructions.
+PO11. Project Management and Finance: Demonstrate knowledge and understanding of the
+engineering and management principles and apply these to one's own work, as a member and leader in
+a team, to manage projects and in multidisciplinary environments.
+PO12. Life-Long Learning: Recognize the need for, and have the preparation and ability to engage
+in independent and life-long learning in the broadest context of technological change.
+PROGRAM SPECIFIC OUTCOMES (PSOs)
+PSO1: Apply the knowledge of Computer Science and Engineering in various domains like
+networking and data mining to manage projects in multidisciplinary environments.
+PSO2: Develop software applications with open-ended programming environments.
+PSO3: Design and develop solutions by following standard software engineering principles and
+implement by using suitable programming languages and platforms
+PROGRAM EDUCATIONAL OBJECTIVES (PEOs)
+PEO1: Apply technical concepts, Analyze, Synthesize data to Design and create novel
+products and solutions for the real life problems.
+PEO2: Apply the knowledge of Computer Science Engineering to pursue higher
+education with due consideration to environment and society.
+PEO3: Promote collaborative learning and spirit of team work through multidisciplinary
+projects
+PEO4: Engage in life-long learning and develop entrepreneurial skills.
+KESHAV MEMORIAL ENGINEERING COLLEGE
+A unit of Keshav Memorial Technical Educational Society (KMTES)
+(Approved by AICTE, New Delhi & Affiliated to Osmania University, Hyderabad)
+D.No. 10 TC-111, Kachavanisingaram (V), Ghatkesar (M), Medchal-Malkajgiri, Telangana – 500 088
+Website:www.kmec.in, Email-id:principal@kmec.in, M: +91 40 29560274
+Department of Computer Science and Engineering
+Course Outcomes and CO-PO/PSO Mapping
+Subject Name: Distributed Systems
+ Subject Code: PC 751 CS
+Branch & Sec: C.S.E
+ Year &Sem: IV/ VII
+COURSE OUTCOMES (COs):
+After completion of the Course, the students will be able to:
+CO 1: Write programs that communicate data between two hosts
+CO 2: Configure Network File Systems (NFS)
+CO 3: To implement inter process communication and remote communication
+CO 4: Use distributed data processing frameworks and mobile application toolkits
+CO-PO-PSO Matrix:
+S.no
+ PO1
+ PO2 PO3
+ PO4 PO5
+ PO6 PO7
+ PO8
+ PO9 PO10
+ PO11
+ PO12 PSO1 PSO2
+CO1
+ 2
+ 1
+ 1
+ 1
+ 2
+ 1
+ 1
+ 1
+CO2
+ 2
+ 2
+ 2
+ 2
+ 2
+ 2
+ 2
+ 2
+CO3
+ 3
+ 2
+ 2
+ 2
+ 2
+ 2
+ 2
+ 2
+CO4
+ 2
+ 2
+ 3
+ 2
+ 3
+ 2
+ 2
+ 2
+ 2
+ 3
+ 3
+ 3
+ 3
+Levels:
+ 3: High
+ 2: Medium
+ 1: Low
+S.No
+1.
+2.
+Javac compiler
+Eclipse
+List of Softwares
+Software Name
+List of Experiments
+S.No
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+Experiment Name
+Implementation FTP Client
+Implementation of Name Server
+Implementation of Chat Server
+Understanding of Working of NFS
+(includes exercises Configuration of NFS)
+Write a program to implement hello world service using RPC or
+Write a program to implement date service using RPC.
+Implement a word count application which counts the number of
+occurrences of each word a large collection of documents Using
+Map Reduce model.
+Develop an application using 3-tier architectures
+Page3
+11
+14
+21
+22
+25
+30
+No.
+Introduction
+Distributed Computing is a field of computer science that studies distributed systems. A
+distributed syste is a model in which components located on networked computers
+communicate and coordinate their actions by passing messages. The components interact
+with each other in order to achieve a common goal. Thee significant characteristics of
+distributed systems are : concurrency of components, lack of a global clock, and independent
+failure of components. Examples of distributed systems vary from SOA-based systems to
+massively multiplayer online games to peer-to-peer applications.
+A computer program that runs in a distributed system is called a distributed program, and
+distributed programmming is the process of writing such programs. There are many
+alternatives for the message passing mechanism, including pure HTTP, RPC-like connectors
+and message queues.
+A goal and challenge pursued by some computer scientists and practitioners in distributed
+systems is location transparency; however, this goal has fallen out of favour in industry, as
+distributed systems are different from conventional non-distributed systems, and the
+differences, such as network partitions, partial system failures, and partial upgrades, cannot
+simply be “prepared over” by attempts at “transparency”
+1
+APPLICATIONS OF DISTRIBUTED SYSTEM
+There are two main reasons for using distributed systems and distributed computing. First,
+the very nature of the application may require the use of a communication network that
+connects several computers. For example, data is produced in one physical location and it is
+needed in another location.
+Second, there are many cases in which the use of a single computer would be possible in
+principle, but the use of a distributed system is beneficial for practical reasons. For example,
+it may be more cost-efficient to obtain the desired level of performance by using a cluster of
+several low-end computers, in comparison with a single high-end computer. A distributed
+system can be more reliable than a non-distributed system, as there is no single point of
+failure. Moreover, a distributed system may be easier to expand and manage than a
+monolithic uniprocessor system.
+Examples of distributed systems and applications of distributed computing include the
+following
+Telecommunication networks:
+
+ Telephone networks and cellular networks
+
+ Computer networks such as the Internet.
+
+ Wireless sensor networks.
+
+ Routing algorithms
+Network applications:
+
+ World Wide Web and peer-to-peer networks
+
+ Massively multiplayer online games and virtual reality communities
+
+ Distributed databases and distributed database management systems.
+
+ Network files systems.
+
+ Distributed information processing systems such as banking systems and airline
+reservation systems
+Real-time process control:
+
+ Aircraft control systems
+
+ Industrial control systems
+Parallel computation:
+
+ Scientific computing, including cluster computing and grid computing and various
+volunteer computing projects; see the list of distributed computing projects.
+2
+PROGRAM-1: Implementation FTP Client
+Description: The File Transfer Protocol
+Aim: To develop a client server application which implements File Transfer protocol. Let the client
+side request for files and the server side reads it and sends to the client.
+(FTP) is a standard network protocol used to transfer computer files from one host to another host over
+a TCP-based network, such as the internet.
+FTP is built on client-server architecture and used separate control and data connections between the
+client and the server. FTP users may authenticate themselves using a clear-text sing-in-protocol,
+normally in the form of a username and password, but can connect anonymously if the server is
+configured to allow it. For secure transmission that protects the username and password and encrypts the
+content, FTP is often secured with SSL/TLS. SSH File Transfer Protocol is sometimes also used instead,
+but is technologically different.
+The first FTP client applications were command line applications developed before operating systems
+had graphical user interfaces, and are still shipped with most Windows, UNIX, and Linux operating
+systems. Many FTP clients and automation utilities have since been developed for desktops, servers,
+mobile devices, and hardware and FTP has been incorporated into productivity applications, such as
+Web page editors.
+FTP Client:
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.net.*;
+import java.io.*;
+class One extends JFrame implements ActionListener
+{
+/* ctrl space */
+3
+public JButton b,b1;
+public JLabel l;
+public JLabel l1,lmsg1,lmsg2;
+One()
+{
+b=new JButton("Upload");
+l=new JLabel("Uplaod a file : ");
+lmsg1=new JLabel("");
+b1=new JButton("Download");
+l1=new JLabel("Downlaod a file");
+lmsg2=new JLabel("");
+setLayout(new GridLayout(2,3,10,10));
+add(l);add(b);add(lmsg1);add(l1);add(b1);add(lmsg2);
+b.addActionListener(this);
+b1.addActionListener(this);
+setVisible(true);
+setSize(600,500);
+}
+public void actionPerformed(ActionEvent e)
+{
+// TODO Auto-generated method stub
+try {
+/* String s=e.getActionCommand();
+if(s.equals("Upload"))*/
+if (b.getModel().isArmed())
+{
+Socket s=new Socket("localhost",1010);
+System.out.println("Client connected to server");
+JFileChooser j=new JFileChooser();
+int val;
+4
+val=j.showOpenDialog(One.this);
+String filename=j.getSelectedFile().getName();
+String path=j.getSelectedFile().getPath();
+PrintStream out=new PrintStream(s.getOutputStream());
+out.println("Upload");
+out.println(filename);
+FileInputStream fis=new FileInputStream(path);
+int n=fis.read();
+while (n!=-1)
+{
+out.print((char)n);n=fis.read();
+}
+fis.close(); out.close();lmsg1.setText(filename+"is uploaded");
+//s.close();
+repaint();
+}
+if (b1.getModel().isArmed())
+{
+Socket s=new Socket("localhost",1010);
+System.out.println("Client connected to server");
+String remoteadd=s.getRemoteSocketAddress().toString();
+System.out.println(remoteadd);
+JFileChooser j1=new JFileChooser(remoteadd);
+int val;
+val=j1.showOpenDialog(One.this);
+String filename=j1.getSelectedFile().getName();
+String filepath=j1.getSelectedFile().getPath();
+System.out.println("File name:"+filename);
+PrintStream out=new PrintStream(s.getOutputStream());
+out.println("Download");
+out.println(filepath);
+5
+FileOutputStream fout=new FileOutputStream(filename);
+DataInputStream fromserver=new DataInputStream(s.getInputStream());
+int ch;
+while ((ch=fromserver.read())!=-1)
+{
+fout.write((char) ch);
+}
+fout.close();//s.close();
+lmsg2.setText(filename+"is downlaoded");
+repaint();
+}
+}
+catch (Exception ee)
+{
+// TODO: handle exception
+System.out.println(ee);
+}
+}
+}
+public class FTPClient
+{
+public static void main(String[] args)
+{
+new One();
+}
+}
+6
+FTP Server:
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+public class FTPServer {
+public static void main(String[] args)
+{
+try {
+while (true)
+{
+ServerSocket ss=new ServerSocket(1010);
+Socket sl=ss.accept();
+System.out.println("Server scoket is created. .. ");
+System.out.println(" test1");
+DataInputStream fromserver=new DataInputStream(sl.getInputStream());
+System.out.println(" test2");
+String option=fromserver.readLine();
+if (option.equalsIgnoreCase("upload"))
+{
+System.out.println("upload test");
+String filefromclient=fromserver.readLine();
+File clientfile=new File(filefromclient);
+FileOutputStream fout=new FileOutputStream(clientfile);
+int ch;
+while ((ch=fromserver.read())!=-1)
+{
+fout.write((char)ch);
+}
+fout.close();
+7
+}
+if (option.equalsIgnoreCase("download"))
+{
+System.out.println("download test");
+String filefromclient=fromserver.readLine();
+File clientfile=new File(filefromclient);
+FileInputStream fis=new FileInputStream(clientfile);
+PrintStream out=new PrintStream(sl.getOutputStream());
+int n=fis.read();
+while (n!=-1)
+{
+out.print((char)n);
+n=fis.read();
+}
+fis.close();
+out.close();
+} //while
+}
+}
+catch (Exception e)
+{
+System.out.println(e);
+// TODO: handle exception
+}
+}
+}
+8
+Expected Output
+9
+Result : Thus the implementation FTP Client was successfully done.
+10
+Program-2:
+ Implementation of Name Server
+Aim: Develop a client server application which implements Name Server. Let the
+client like a web browser sends a request containing a hostname, then a piece of
+software such as name server resolver sends a request to the name server to obtain
+the IP address of a hostname.
+Description: Name server is a client / server network communication protocol. Name
+server clients send request to the server while name servers send response to the client.
+Client request contain a name which is converted into in IP address known as a forward
+name server lookups while requests containing an IP address which is converted into a
+name known as reverse name server lookups. Name server implements a distributed
+database to store the name of all the hosts available on the internet. If a client like a web
+browser sends a request containing a hostname, then a piece of software such as name
+server resolver sends a request to the name server to obtain the IP address of a hostname.
+If name server does not contain the IP address associated with a hostname then it forwards
+the request to another name server. It IP address has arrived at the resolver, which in turn
+completes the request over the internet protocol.
+11
+Program:
+import java.net.*;
+import java.io.*; import
+java.util.*; public class
+DNS
+{
+public static void main(String[] args)
+{
+int n;
+BufferedReader in = new BufferedReader(new
+InputStreamReader(System.in)); do
+{
+System.out.println("\n Menu: \n 1. DNS 2. Reverse DNS 3. Exit \n");
+System.out.println("\n Enter your choice");
+n =
+Integer.parseInt(System.console().readLine()); if(n==1)
+{
+try
+{
+System.out.println("\n Enter Host Name
+"); String hname=in.readLine();
+InetAddress address;
+address = InetAddress.getByName(hname);
+System.out.println("Host Name: " + address.getHostName());
+System.out.println("IP: " + address.getHostAddress());
+}
+catch(IOException ioe)
+{
+ioe.printStackTrace();
+}
+}
+if(n==2)
+{
+try
+{
+12
+System.out.println("\n Enter IP address"); String ipstr = in.readLine();
+InetAddress ia = InetAddress.getByName(ipstr);
+System.out.println("IP: "+ipstr);
+System.out.println("Host Name: "
++ia.getHostName());
+}
+catch(IOException ioe)
+{
+ioe.printStackTrace();
+}
+}
+}while(!(n==3));
+}}
+Expected Output:
+Result : Thus the implementation of Name Server was successfully done
+13
+Program-3:
+ Implementation of Chat Server
+Aim: To develop a client server application this implements Chat Server. Let the
+client side request for message and the server side displays it and sends to the client.
+Description: A client / server program into a fully functioning chat client / server. A simple
+server that will accept a single client connection and display everything the client says on the
+screen. If the client user’s types “OK” the client and the server will both quit. A server as
+before, but this time it will remain open for additional connection once a client has quit. The
+server can handle at most one connection at a time. A server as before but his time it can
+handle multiple clients simultaneously. The output from all connected clients will appear on
+the server’s screen. A server as before, but his time it sends all text received from any of the
+connected clients to all clients. This means that the server has to receive and send the client
+has to send as well as receive.
+Program:
+CCLogin.java
+import java.awt.Font;
+import
+java.awt.event.ActionEven
+t; import
+java.awt.event.ActionListe
+ner; import
+java.io.IOException;
+import
+javax.swing.JButton
+; import
+javax.swing.JFrame;
+import
+javax.swing.JLabel;
+import
+javax.swing.JPanel;
+import
+javax.swing.JTextFi
+eld; import
+java.awt.GridLayout
+;
+14
+public class CCLogin implements ActionListener
+{
+JFrame frame1; JTextField tf,tf1; JButton
+button; JLabel heading; JLabel label,label1;
+public static void main(String[] paramArrayOfString)
+{
+new CCLogin();
+}
+15
+public CCLogin()
+{
+this.frame1 = new JFrame("Login Page");
+this.tf = new JTextField(10);
+this.button = new JButton("Login");
+this.heading = new JLabel("Chat Server");
+this.heading.setFont(new Font("Impact", 1, 40));
+this.label = new JLabel("Enter you Login Name");
+this.label.setFont(new Font("Serif", 0, 24));
+JPanel localJPanel = new JPanel();
+this.button.addActionListener(this);
+localJPanel.add(this.heading); localJPanel.add(this.label);
+localJPanel.add(this.tf);
+localJPanel.add(this.button);
+this.heading.setBounds(30, 20, 280, 50);
+this.label.setBounds(20, 100, 250, 60);
+this.tf.setBounds(50, 150, 150, 30);
+this.button.setBounds(70, 190, 90, 30);
+this.frame1.add(localJPanel);
+localJPanel.setLayout(null);
+this.frame1.setSize(300,300);
+this.frame1.setVisible(true);
+this.frame1.setDefaultCloseOperation(3);
+}
+public void actionPerformed(ActionEvent paramActionEvent)
+{
+String str = "";
+try
+{
+str = this.tf.getText();
+this.frame1.dispose();
+Client1 c1= new Client1(str);
+16
+c1.main(null);
+}
+catch(Exception localIOException)
+{
+}
+}
+}
+EXPECTED OUTPUT:
+ChatMultiServer:
+import java.net.*;
+import java.io.*;
+class A implements Runnable
+{
+Thread t;
+Socket s;
+A(Socket x)
+{
+s=x;
+t=new Thread(this);
+t.start();
+}
+public void run()
+{
+try
+{
+/* Reading data from client */
+InputStream is=s.getInputStream();
+byte data[]=new byte[50];
+is.read(data);
+String mfc=new String(data);
+17
+mfc=mfc.trim();
+System.out.println(mfc);
+/* Sending message to the server */
+//System.out.println("Hi"+name+"u can start chating");
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+String n=br.readLine();
+OutputStream os=s.getOutputStream();
+os.write(n.getBytes());
+}
+catch(Exception e)
+{
+e.printStackTrace();
+}
+}
+}
+class ChatMultiServer
+{
+static int c=0;
+public static void main(String args[]) throws Exception
+{
+System.out.println("ServerSocket is creating");
+ServerSocket ss=new ServerSocket(1010);
+System.out.println("ServerSocket is created");
+System.out.println("waiting for the client from the client");
+while(true)
+{
+Socket s=ss.accept();
+new A(s);
+}
+}
+}
+18
+EXPECTED OUTPUT:
+Client1.java
+import java.net.*;
+import java.io.*;
+class Client1
+{
+static String name="";
+public Client1(String n)
+{
+name=n;
+}
+public static void main(String args[]) throws Exception
+{
+System.out.println("connecting to server");
+System.out.println("client1 connected to server");
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+/* Sending message to the server */
+System.out.println("Hi\t"+name+" u can start chating");
+while(true)
+{
+Socket s=new Socket("localhost",1010);
+String n=br.readLine();
+OutputStream os=s.getOutputStream();
+os.write(n.getBytes());
+19
+/* Reading data from client */
+InputStream is=s.getInputStream();
+byte data[]=new byte[50];
+is.read(data);
+String mfc=new String(data);
+mfc=mfc.trim();
+System.out.println(mfc);
+}
+}
+}
+EXPECTED OUTPUT:
+Result : Thus the Chat Server was successfully implemented
+20
+Program-4: Understanding of Working of NFS (includes exercises Configuration of NFS
+) Aim: To understanding Network File System, distributed file system protocol allows a user
+on a client computer to access files over a network in the same implement the protocol.
+Description: To access data stored on another machine (i.e., Server) the server would
+implement NFS daemon processes to make data available to clients. The server
+administrator determines what to make available and ensures it can recognize validated
+clients. From the client’s side the machine requests access to exported data, typically by
+issuing a mount command. If successful the client machine can then view and interact with
+the file systems within the decided parameters.
+Program:
+Study of Network File Systems
+1.
+ Create a Folder
+ nfs/abc.txt
+2.
+ Know the ipaddress
+Applications->System Settings->Network—edit ( ipaddress,
+subnetmask) (or) In terminal type ifconfig
+3.
+ Enable the desired services
+1.
+ System Services->Server Settings->Services
+
+ Network (Enable)
+
+ Nfs (Enable)
+
+ Iptables (Disable)
+ (we do not firewalls)
+2.
+ System Settings ->Security Level (Firewall options-disable, Selinux-
+disable)
+Creation of Network File System Server
+1.
+ System Settings->Server Settings->NFS
++ Add (All are making security levels low)
+2.
+ Open Terminal
+Type: service nfs restart Creation of NFS Client Open terminal
+Type: df
+Type: mount –t nfs 135.135.5.120:/usr/nfs /root/abc cd abc
+ls : abc.txt
+Unmount: umount –t nfs 135.135.5.120:/usr/nfs
+Note: service network restart (if n/w is disabled use this )
+21
+Program-5: Write a program to implement hello world service using RPC or Write a program
+to implement date service using RPC.
+What is RPC?
+RPC stands for Remote Procedure Call which supports procedural programming. Using RPC we
+can invokes methods in shared environments. As an example we can call a function in a remote
+machine from our local computer using RPC. We can define RPC as a communication type in
+distributed systems.
+When we dig into RPC structure, we can identify it implements the client server model. And also
+the calls are synchronous which makes the client wait till the server response.
+Above diagram shows the client server architecture of RPC implemented system. The events which
+are occurred during a remote procedure call have
+listed below.
+1. Client stub is called by client.
+2. Client stub prepare a call by packing parameters to the procedure call. (This process is
+called marshalling)
+3. Client’s local machine sends the message to the server machine.
+4. Server stub is received the sent message.
+5. Server stub unpacks the parameters from the message. (This process is called
+unmarshalling)
+6. Server stub calls the server procedure and returns the results to the client machine after
+marshalling the data.
+During this client server communication, data transportation happens in XML
+format. Marshalling and unmarshalling is the process that converts
+data into suitable format for storage or transmission.
+Development
+22
+From now on we are going to implement a system which supports RPC using java. In java there are
+two apis which can be used to implement web services.
+1. JAX-WS
+2. JAX-RS
+We have to use JAX-WS. Because it is built for use in SOAP web services. In brief RPC style is
+categorized as a SOAP web service. JAX-WS is an inbuilt package in jdk, therefore you don’t have
+to do any extra configurations.
+In our system there are two applications. One is the client side application and the other one act as
+the server application. First you can set up a java application using any preferred IDE. But here i
+have used IntelliJ IDEA.
+JAX-WS Example RPC Style
+Creating JAX-WS example is a easy task because it requires no extra configuration settings.
+JAX-WS API is inbuilt in JDK, so you don't need to load any extra jar file for it. Let's see a simple
+example of JAX-WS example in RPC style.
+There are created 4 files for hello world JAX-WS example:
+1. HelloWorld.java
+2. HelloWorldImpl.java
+3. Publisher.java
+4. HelloWorldClient.java
+The first 3 files are created for server side and 1 application for client side.
+JAX-WS Server Code
+File: HelloWorld.java
+1. package com.javatpoint;
+2. import javax.jws.WebMethod;
+3. import javax.jws.WebService;
+4. import javax.jws.soap.SOAPBinding;
+5. import javax.jws.soap.SOAPBinding.Style;
+6. //Service Endpoint Interface
+7. @WebService
+8. @SOAPBinding(style = Style.RPC)
+9. public interface HelloWorld{
+10. @WebMethod String getHelloWorldAsString(String name);
+11. }
+File: HelloWorldImpl.java
+1. package com.javatpoint;
+2. import javax.jws.WebService;
+3. //Service Implementation
+4. @WebService(endpointInterface = "com.javatpoint.HelloWorld")
+5. public class HelloWorldImpl implements HelloWorld{
+6.
+ @Override
+7.
+ public String getHelloWorldAsString(String name) {
+8.
+ return "Hello World JAX-WS " + name;
+9.
+ }
+10. }
+File: Publisher.java
+1. package com.javatpoint;
+2. import javax.xml.ws.Endpoint;
+3. //Endpoint publisher
+4. public class HelloWorldPublisher{
+23
+5.
+ public static void main(String[] args) {
+6.
+ Endpoint.publish("http://localhost:7779/ws/hello", new HelloWorldImpl());
+7.
+ }
+8. }
+How to view generated WSDL
+After running the publisher code, you can see the generated WSDL file by visiting the URL:
+1. http://localhost:7779/ws/hello?wsdl
+JAX-WS Client Code
+File: HelloWorldClient.java
+1. package com.javatpoint;
+2. import java.net.URL;
+3. import javax.xml.namespace.QName;
+4. import javax.xml.ws.Service;
+5. public class HelloWorldClient{
+6.
+ public static void main(String[] args) throws Exception {
+7.
+ URL url = new URL("http://localhost:7779/ws/hello?wsdl");
+8.
+9.
+ //1st argument service URI, refer to wsdl document above
+10. //2nd argument is service name, refer to wsdl document above
+11.
+ QName qname = new QName("http://javatpoint.com/", "HelloWorldImplService");
+12.
+ Service service = Service.create(url, qname);
+13.
+ HelloWorld hello = service.getPort(HelloWorld.class);
+14.
+ System.out.println(hello.getHelloWorldAsString("javatpoint rpc"));
+15.
+ }
+16. }
+Output:
+Hello World JAX-WS javatpoint rpc
+24
+Program-6: Implement a word count application which counts the number of occurrences of each
+words a large collection of documents Using Map Reduce model.
+Aim: To develop to implement a word count application which counts the number of
+occurrences of each words a large collection of documents Using Map Reduce model.
+Description: In Hadoop, MapReduce is a computation that decomposes large manipulation jobs into
+individual tasks that can be executed in parallel across a cluster of servers. The results of task can be
+joined together to compute final results.
+MapReduce consists of 2 steps:
+Map Function – it takes a set of data and converts it into another set of data, where individual
+elements are broken down into tuples (Key-Value pair)
+Example - (Map function in word count)
+Bus, Car, bus, car, train, car, bus, car, train, bus,
+Input
+ Set of data
+TRAIN,BUS, buS, caR, CAR, car, BUS, TRAIN
+Output
+Convert into another
+set of data
+(Key, Value)
+(Bus,1), (Car,1), (bus,1), (car,1), (train,1),
+(car,1), (bus,1), (car,1), (train,1), (bus,1),
+(TRAIN,1),(BUS,1), (buS,1), (caR,1), (CAR,1),
+(car,1), (BUS,1), (TRAIN,1)
+
+Reduce Function –Takes the output from Map as an input and combines those data tuples
+into a smaller set of tuples.
+Example – (Reduce function in word count)
+Input
+(output of Map function)
+Set of
+Tuples
+(Bus,1), (Car,1), (bus,1), (car,1), (train,1),
+(car,1), (bus,1), (car,1), (train,1), (bus,1),
+(TRAIN,1),(BUS,1), (buS,1), (caR,1), (CAR,1),
+(car,1), (BUS,1), (TRAIN,1)
+Output
+Converts
+into smaller
+set of tuples
+(BUS,7),
+(CAR,7),
+(TRAIN,4)
+25
+Work Flow of the program:
+Workflow of Map Reduce consists of 5 steps:
+Splitting – The splitting parameter can be anything, e.g. splitting by space, comma, semicolon, or
+even by a new line (‘\n’).
+Mapping – as explained above.
+Intermediate splitting – the entire process in parallel on different clusters. In order to group them in
+“Reduce Phase” the similar KEY data should be on the same cluster.
+Reduce – it is nothing but mostly group by phase.
+Combining – The last phase where all the data (individual result set from each cluster) is combined together
+to form a result.
+We need to write the splitting parameter, Map function logic, and Reduce function logic. The rest of
+the remaining steps will execute automatically.
+Make sure that Hadoop is installed on your system with the Java SDK.
+Steps
+1. Open Eclipse> File > New > Java Project >( Name it – MRProgramsDemo) > Finish.
+2. Right Click > New > Package ( Name it - PackageDemo) > Finish.
+3. Right Click on Package > New > Class (Name it - WordCount).
+4. Add Following Reference Libraries:
+1. Right Click on Project > Build Path> Add External
+1. /usr/lib/hadoop-0.20/hadoop-core.jar
+2. Usr/lib/hadoop-0.20/lib/Commons-cli-1.2.jar
+26
+package PackageDemo;
+import java.io.IOException;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job; import
+org.apache.hadoop.mapreduce.Mapper; import
+org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.util.GenericOptionsParser;
+public class WordCount {
+public static void main(String [] args) throws Exception
+{
+Configuration c=new Configuration();
+String[] files=new GenericOptionsParser(c,args).getRemainingArgs(); Path
+input=new Path(files[0]);
+Path output=new Path(files[1]); Job
+j=new Job(c,"wordcount");
+j.setJarByClass(WordCount.class);
+j.setMapperClass(MapForWordCount.class);
+j.setReducerClass(ReduceForWordCount.class);
+j.setOutputKeyClass(Text.class);
+j.setOutputValueClass(IntWritable.class);
+FileInputFormat.addInputPath(j, input);
+FileOutputFormat.setOutputPath(j, output);
+System.exit(j.waitForCompletion(true)?0:1);
+}
+public static class MapForWordCount extends Mapper<LongWritable, Text, Text, IntWritable>{
+public void map(LongWritable key, Text value, Context con) throws IOException,
+InterruptedException
+{
+27
+String line = value.toString();
+String[]
+ words=line.split(",");
+for(String word: words )
+{
+Text outputKey = new Text(word.toUpperCase().trim()); IntWritable
+outputValue = new IntWritable(1); con.write(outputKey,
+outputValue);
+}
+}
+}
+public static class ReduceForWordCount extends Reducer<Text, IntWritable, Text, IntWritable>
+{
+public void reduce(Text word, Iterable<IntWritable> values, Context con) throws IOException,
+InterruptedException
+{
+int sum = 0;
+for(IntWritable value : values)
+{
+sum += value.get();
+}
+con.write(word, new IntWritable(sum));
+}
+}
+}
+28
+Expected Output
+1. Take a text file and move it into HDFS format:
+To move this into Hadoop directly, open the terminal and enter the following commands: [training@localhost
+~]$ hadoop fs -put wordcountFile wordCountFile
+2. Run the jar file:
+(Hadoop jar jarfilename.jar packageName.ClassName PathToInputTextFile
+PathToOutputDirectry)
+[training@localhost ~]$ hadoop jar MRProgramsDemo.jar PackageDemo.WordCount wordCountFile
+MRDir1
+3. Open the result:
+[training@localhost ~]$ hadoop fs -ls MRDir1 Found 3
+items
+-rw-r--r-- 1 training supergroup
+ 0 2016-02-23 03:36 /user/training/MRDir1/_SUCCESS
+drwxr-xr-x - training supergroup
+ 0 2016-02-23 03:36 /user/training/MRDir1/_logs
+-rw-r--r-- 1 training supergroup
+ 20 2016-02-23 03:36 /user/training/MRDir1/part-r-00000
+[training@localhost ~]$ hadoop fs -cat MRDir1/part-r-00000
+BUS
+ 7
+CAR
+ 4
+TRAIN 6
+Result: A word count application which counts the number of occurrences of each word a large
+collection of documents Using Map Reduce model was successfully developed.
+29
+Program-7: Develop an application using 3-tier architectures
+AIM: Three-Tier Application Architecture
+In the ever-evolving world of software development, the three-tier application architecture
+emerges as a fundamental pillar of modern distributed systems. This architectural paradigm
+ingeniously divides an application into three distinct tiers, offering not only logical but also
+physical separation of responsibilities. Its enduring relevance is underscored by the numerous
+benefits it bestows upon developers, including scalability, reliability, and maintainability.
+The Three Tiers in Three-Tier Architecture
+Presentation Tier:
+At the zenith of this architectural hierarchy lies the presentation tier. This is the facet of the
+application that directly engages with end-users, serving as the user interface. Its adaptability shines
+through, accommodating interfaces that span the spectrum, from web browsers rendering HTML
+and CSS to the diverse array of programming languages employed in crafting desktop applications.
+Graphical User Interfaces (GUIs) also find their place here, lending an intuitive and user-friendly
+touch to the application's outward-facing aspects.
+The web-based presentation tiers leverage a blend of HTML, CSS, and JavaScript to create
+responsive and interactive user interfaces. Desktop applications, on the other hand, capitalize on the
+flexibility of diverse programming languages, aligning with the unique demands of various
+platforms.
+Application Tier:
+Nestled at the core of the architecture is the application tier, affectionately known as the logic tier.
+This stratum encapsulates the application's vital organs? the business logic that orchestrates its
+functions. It undertakes the meticulous processing of information received from the presentation
+tier, occasionally necessitating interaction with the data tier to retrieve or manipulate data.
+Programming languages such as Python, Java, PHP, and an array of others find their purpose in
+the application tier. This tier is where the magic happens, where the application's unique value
+is created. Communication between the application and data tiers is orchestrated through well-
+defined Application Programming Interfaces (APIs), ensuring seamless data flow and
+functionality.
+Data Tier:
+The bedrock of the three-tier architecture is the data tier, often recognized as the database tier or
+30
+data access tier. In this realm, the information meticulously processed by the application
+finds its home. It accommodates various forms, from the traditional Relational Database
+Management Systems (RDBMS) like PostgreSQL, MySQL, and Oracle to the more agile
+and schema-flexible NoSQL database servers such as Cassandra, CouchDB, and MongoDB.
+Benefits of Three-Tier Architecture
+Unveiling the inherent advantages that make three-tier architecture a preferred choice over simpler
+single- or two-tier alternatives
+o
+ Expedited Development: The separation of tiers fosters concurrent development by distinct
+teams, catalyzing application creation. Each team employs the most suitable tools and
+languages for their respective tiers, promoting agility and innovation.
+o
+ Scalability Mastery: A hallmark feature is the ability to scale each tier independently as the
+need arises. This dynamic scalability ensures the application can gracefully accommodate
+surges in demand, optimizing resource utilization.
+o
+ Reliability Amplified: Failures within one tier are less likely to cascade through the
+architecture, thus enhancing overall system reliability. This isolation limits the impact of
+disruptions, guaranteeing smoother operations.
+o
+ Fortified Security: Acting as a sentinel, the application tier enforces an internal firewall,
+thwarting direct communication between the presentation and data tiers. This fortification
+guards against security vulnerabilities, including notorious threats like SQL injections,
+delivering a safer user experience.
+Three-Tier Architecture in Web Development
+In the realm of web development, nuanced terminology comes into play
+o
+ Presentation Tier: Corresponding to the user interface, this tier interfaces directly with end-
+users via web browsers. It deftly wields technologies like HTML, CSS, and JavaScript to
+deliver captivating and interactive web interfaces.
+o
+ Application Tier: Operating as the logic tier, this segment processes user inputs and
+orchestrates interactions with data servers. Esteemed frameworks such as Django, Ruby on
+Rails, Symphony, and ASP.NET are the workhorses here, facilitating efficient application
+logic.
+o
+ Data Tier: Perpetuating its role, the data tier retains and manages the data assets of the
+application. Database management systems, both relational and NoSQL, reside in this tier,
+ensuring data integrity and accessibility.
+Beyond Three-Tier Architecture
+While three-tier architecture reigns supreme as the prevailing multi-tier application architecture,
+it's worth mentioning other architectural paradigms you might encounter
+o
+ Two-Tier Architecture: Simplifying the model, two-tier architecture amalgamates the
+presentation and data tiers, often with limited business logic. It's apt for straightforward
+applications with modest requirements.
+o
+ N-Tier Architecture: A broader term encompassing architectures with more than one tier.
+However, practical implementations typically align with three-tier architecture, as additional
+tiers can introduce unwarranted complexity without commensurate benefits
+31
+32

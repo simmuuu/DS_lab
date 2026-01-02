@@ -1,0 +1,15 @@
++    i Write a JAVA program to implement FTP Client Description 
++    ii Write a JAVA program for implementation of Demo Client Server Connection establishment. (it’s FTP program)
++    iii Write a JAVA program for Implementation of  DNS( Domain Name Server).
+    iv Develop a client server application which implements Name Server. (its DNS program)
+    v Write a program to implement date service using RPC.
+    vi Write a program to implement Hello world service using RPC.
+    vii Write a JAVA program for implementation of Chat Server.
+    viii Implement a word count application which counts the number of occurrences of each words a large collection of documents Using Map Reduce model.
+    ix Note: you need to write the three logics for the below application programs refer the lab manual, for exam in a set you will get one of the 4 programs.
+    x Develop an application using 3-tier architectures for 
+    xi  an online banking application.
+    xii an e-commerce website.
+    xiii for Ticket reservation system.
+    xiv student management system.
+
