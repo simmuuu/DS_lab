@@ -4,60 +4,43 @@
 ```java
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
 
-// FTP Client
 public class FTPClient {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
-        try {
-            System.out.println("=== FTP Client ===");
-            System.out.println("1. Upload File");
-            System.out.println("2. Download File");
-            System.out.print("Choice: ");
-            int choice = sc.nextInt();
-            sc.nextLine();
-            
-            Socket socket = new Socket("localhost", 5000);
-            PrintStream out = new PrintStream(socket.getOutputStream());
-            
-            System.out.print("Enter filename: ");
-            String filename = sc.nextLine();
-            
-            if (choice == 1) {
-                // Upload
-                out.println("UPLOAD");
-                out.println(filename);
-                
-                FileInputStream fis = new FileInputStream(filename);
-                int data;
-                while ((data = fis.read()) != -1) {
-                    out.write(data);
-                }
-                fis.close();
-                System.out.println("File uploaded!");
-                
-            } else if (choice == 2) {
-                // Download
-                out.println("DOWNLOAD");
-                out.println(filename);
-                
-                FileOutputStream fos = new FileOutputStream("downloaded_" + filename);
-                DataInputStream in = new DataInputStream(socket.getInputStream());
-                int data;
-                while ((data = in.read()) != -1) {
-                    fos.write(data);
-                }
-                fos.close();
-                System.out.println("File downloaded!");
+    public static void main(String[] args) throws Exception {
+        Socket s = new Socket("localhost", 6767);
+
+        BufferedReader kb = new BufferedReader(
+                new InputStreamReader(System.in));
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+
+        System.out.print("Upload/Download: ");
+        String op = kb.readLine();
+        System.out.print("Filename: ");
+        String file = kb.readLine();
+
+        dos.writeUTF(op);
+        dos.writeUTF(file);
+        dos.flush();
+
+        if (op.equalsIgnoreCase("upload")) {
+            FileInputStream fis = new FileInputStream(file);
+            int ch;
+            while ((ch = fis.read()) != -1) {
+                dos.write(ch);
             }
-            
-            socket.close();
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            fis.close();
+        } else if (op.equalsIgnoreCase("download")) {
+            FileOutputStream fos = new FileOutputStream("downloaded_" + file);
+            int ch;
+            while ((ch = dis.read()) != -1) {
+                fos.write(ch);
+                System.out.print((char) ch); // to see output on client
+            }
+            fos.close();
         }
-        sc.close();
+
+        s.close();
     }
 }
 ```
@@ -67,51 +50,39 @@ public class FTPClient {
 import java.io.*;
 import java.net.*;
 
-// FTP Server
 public class FTPServer {
-    public static void main(String[] args) {
-        try {
-            ServerSocket server = new ServerSocket(5000);
-            System.out.println("FTP Server started on port 5000...");
-            
-            while (true) {
-                Socket client = server.accept();
-                System.out.println("Client connected!");
-                
-                DataInputStream in = new DataInputStream(client.getInputStream());
-                
-                String command = in.readLine(); // UPLOAD or DOWNLOAD
-                String filename = in.readLine();
-                
-                if (command.equals("UPLOAD")) {
-                    // Receive file
-                    FileOutputStream fos = new FileOutputStream(filename);
-                    int data;
-                    while ((data = in.read()) != -1) {
-                        fos.write(data);
-                    }
-                    fos.close();
-                    System.out.println("File uploaded: " + filename);
-                    
-                } else if (command.equals("DOWNLOAD")) {
-                    // Send file
-                    FileInputStream fis = new FileInputStream(filename);
-                    PrintStream out = new PrintStream(client.getOutputStream());
-                    int data;
-                    while ((data = fis.read()) != -1) {
-                        out.write(data);
-                    }
-                    fis.close();
-                    System.out.println("File sent: " + filename);
-                }
-                
-                client.close();
+    public static void main(String[] args) throws Exception {
+        ServerSocket ss = new ServerSocket(6767);
+        Socket s = ss.accept();
+
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+
+        String op = dis.readUTF();
+        String file = dis.readUTF();
+
+        if (op.equalsIgnoreCase("upload")) {
+            FileOutputStream fos = new FileOutputStream("server_" + file);
+            int ch;
+            while ((ch = dis.read()) != -1) {
+                fos.write(ch);
+                System.out.print((char) ch); // output on server side
             }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            fos.close();
+        } else if (op.equalsIgnoreCase("download")) {
+            FileInputStream fis = new FileInputStream(file);
+            int ch;
+            while ((ch = fis.read()) != -1) {
+                dos.write(ch);
+            }
+            fis.close();
         }
+
+        s.close();
+        ss.close();
     }
 }
+
 ```
 
 ---
@@ -160,6 +131,7 @@ public class DNS {
         sc.close();
     }
 }
+
 ```
 
 ---
@@ -172,21 +144,24 @@ import java.io.*;
 import java.net.*;
 
 public class ChatServer {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] a) throws Exception {
         ServerSocket ss = new ServerSocket(6767);
-        System.out.println("Server running...");
-        
         Socket s = ss.accept();
-        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
-        PrintStream out = new PrintStream(s.getOutputStream());
-        BufferedReader kb = new BufferedReader(new InputStreamReader(System.in));
-        
-        while (true) {
-            System.out.print("Client: " + in.readLine() + "\nYou: ");
-            out.println(kb.readLine());
+
+        BufferedReader br =
+                new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String msg;
+        while ((msg = br.readLine()) != null) {
+            System.out.println("Client: " + msg);
         }
+
+        br.close();
+        s.close();
+        ss.close();
     }
 }
+
 ```
 
 ## ChatClient.java
@@ -195,20 +170,23 @@ import java.io.*;
 import java.net.*;
 
 public class ChatClient {
-    public static void main(String[] args) throws Exception {
-        Socket s = new Socket(host: "localhost", port: 6767);
-        
-        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+    public static void main(String[] a) throws Exception {
+        Socket s = new Socket("localhost", 6767);
+
         PrintStream out = new PrintStream(s.getOutputStream());
-        BufferedReader kb = new BufferedReader(new InputStreamReader(System.in));
-        
-        while (true) {
-            System.out.print(s: "You: ");
-            out.println(kb.readLine());
-            System.out.println("Server: " + in.readLine());
+        BufferedReader br =
+                new BufferedReader(new InputStreamReader(System.in));
+
+        String msg;
+        while (!(msg = br.readLine()).equals("exit")) {
+            out.println(msg);
         }
+
+        out.close();
+        s.close();
     }
 }
+
 ```
 
 ---
@@ -233,6 +211,7 @@ public interface DateService {
     @WebMethod
     String getCurrentDateTime();
 }
+
 ```
 
 ## DateServiceImpl.java
@@ -262,6 +241,7 @@ public class DateServiceImpl implements DateService {
         return sdf.format(new Date());
     }
 }
+
 ```
 
 ## DateServer.java
@@ -274,6 +254,7 @@ public class DateServer {
         System.out.println("Date Service published...");
     }
 }
+
 ```
 
 ## DateClient.java
@@ -294,6 +275,7 @@ public class DateClient {
         System.out.println("Current DateTime: " + ds.getCurrentDateTime());
     }
 }
+
 ```
 
 ---
@@ -312,6 +294,7 @@ public interface HelloWorld {
     @WebMethod
     String sayHello(String name);
 }
+
 ```
 
 ## HelloWorldImpl.java
@@ -328,6 +311,7 @@ public class HelloWorldImpl implements HelloWorld {
         return "Hello " + name + " from RPC Service!";
     }
 }
+
 ```
 
 ## Publisher.java
@@ -340,6 +324,7 @@ public class Publisher {
         System.out.println("Service published...");
     }
 }
+
 ```
 
 ## HelloWorldClient.java
@@ -357,6 +342,7 @@ public class HelloWorldClient {
         System.out.println(hw.sayHello("Distributed Systems"));
     }
 }
+
 ```
 
 ---
@@ -419,6 +405,7 @@ public class WordCount {
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
+
 ```
 
 ---
