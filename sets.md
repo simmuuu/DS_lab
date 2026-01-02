@@ -23,6 +23,11 @@
 2. Chat Server
 3. RPC Date Service
 
+**Set-7**
+1. Demo Client Server (FTP)
+2. MapReduce
+3. Chat Server
+
 **Set-8**
 1. Student Management 3-tier
 2. MapReduce
