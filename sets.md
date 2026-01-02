@@ -33,6 +33,11 @@
 2. MapReduce
 3. NameServer DNS
 
+**Set-9**
+1. Ticket Reservation 3-tier
+2. Chat Server
+3. DNS
+
 **Set-10**
 1. DNS
 2. Hello World RPC

@@ -1,48 +1,35 @@
 import java.io.*;
 import java.net.*;
 
-// FTP Server
 public class FTPServer {
-    public static void main(String[] args) {
-        try {
-            ServerSocket server = new ServerSocket(5000);
-            System.out.println("FTP Server started on port 5000...");
-            
-            while (true) {
-                Socket client = server.accept();
-                System.out.println("Client connected!");
-                
-                DataInputStream in = new DataInputStream(client.getInputStream());
-                
-                String command = in.readLine(); // UPLOAD or DOWNLOAD
-                String filename = in.readLine();
-                
-                if (command.equals("UPLOAD")) {
-                    // Receive file
-                    FileOutputStream fos = new FileOutputStream(filename);
-                    int data;
-                    while ((data = in.read()) != -1) {
-                        fos.write(data);
-                    }
-                    fos.close();
-                    System.out.println("File uploaded: " + filename);
-                    
-                } else if (command.equals("DOWNLOAD")) {
-                    // Send file
-                    FileInputStream fis = new FileInputStream(filename);
-                    PrintStream out = new PrintStream(client.getOutputStream());
-                    int data;
-                    while ((data = fis.read()) != -1) {
-                        out.write(data);
-                    }
-                    fis.close();
-                    System.out.println("File sent: " + filename);
-                }
-                
-                client.close();
+    public static void main(String[] args) throws Exception {
+        ServerSocket ss = new ServerSocket(6767);
+        Socket s = ss.accept();
+
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+
+        String op = dis.readUTF();
+        String file = dis.readUTF();
+
+        if (op.equalsIgnoreCase("upload")) {
+            FileOutputStream fos = new FileOutputStream("server_" + file);
+            int ch;
+            while ((ch = dis.read()) != -1) {
+                fos.write(ch);
+                System.out.print((char) ch); // output on server side
             }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            fos.close();
+        } else if (op.equalsIgnoreCase("download")) {
+            FileInputStream fis = new FileInputStream(file);
+            int ch;
+            while ((ch = fis.read()) != -1) {
+                dos.write(ch);
+            }
+            fis.close();
         }
+
+        s.close();
+        ss.close();
     }
 }

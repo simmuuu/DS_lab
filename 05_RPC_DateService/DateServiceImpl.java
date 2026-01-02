@@ -3,6 +3,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 @WebService(
+    serviceName = "DateService",
     endpointInterface = "DateService",
     targetNamespace = "http://date/"
 )

@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distributed Systems Lab</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: #1a1a1a;
+        }
+
+        .header {
+            background: #2d2d2d;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border-bottom: 2px solid #444;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .nav {
+            background: #2d2d2d;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border: 1px solid #444;
+        }
+
+        .nav h2 {
+            color: #4a9eff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .nav ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .nav li a {
+            display: block;
+            padding: 0.75rem 1rem;
+            background: #1a1a1a;
+            border-radius: 8px;
+            color: #4a9eff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid #4a9eff;
+        }
+
+        .nav li a:hover {
+            background: #333;
+            color: #6bb6ff;
+            transform: translateX(5px);
+        }
+
+        .section {
+            background: #2d2d2d;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border: 1px solid #444;
+        }
+
+        .section h2 {
+            color: #4a9eff;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #4a9eff;
+        }
+
+        .section h3 {
+            color: #6bb6ff;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            color: #b0b0b0;
+        }
+
+        pre[class*="language-"] {
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        code[class*="language-"] {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .toolbar {
+            opacity: 1 !important;
+        }
+
+        .copy-to-clipboard-button {
+            background: #4a9eff !important;
+            color: white !important;
+            border: none !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            font-size: 0.85rem !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .copy-to-clipboard-button:hover {
+            background: #3a8eef !important;
+        }
+
+        .file-info {
+            background: #1a1a1a;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            font-family: monospace;
+            color: #6bb6ff;
+            font-weight: 600;
+            border: 1px solid #444;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🖥️ Distributed Systems Lab</h1>
+        <p>Complete implementation of distributed systems concepts in Java</p>
+    </div>
+
+    <div class="container">
+        <div class="nav">
+            <h2>📚 Lab Exercises</h2>
+            <ul>
+                <li><a href="#ftp">01 - FTP Client/Server</a></li>
+                <li><a href="#dns">02 - DNS Name Server</a></li>
+                <li><a href="#chat">03 - Chat Server</a></li>
+                <li><a href="#rpc-date">05 - RPC Date Service</a></li>
+                <li><a href="#rpc-hello">06 - RPC Hello World</a></li>
+                <li><a href="#mapreduce">07 - MapReduce WordCount</a></li>
+                <li><a href="#three-tier">08 - Three Tier Architecture</a></li>
+            </ul>
+        </div>
+
+        <!-- 01 FTP Client/Server -->
+        <div class="section" id="ftp">
+            <h2>01 - FTP Client/Server</h2>
+            <p>A simple File Transfer Protocol implementation with client and server components.</p>
+            
+            <h3>FTPServer.java</h3>
+            <div class="file-info">📄 01_FTP_Client/FTPServer.java</div>
+            <pre><code class="language-java">import java.io.*;
+import java.net.*;
+
+public class FTPServer {
+    public static void main(String[] args) {
+        try (ServerSocket serverSocket = new ServerSocket(5000)) {
+            System.out.println("FTP Server started on port 5000");
+            
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                System.out.println("Client connected: " + clientSocket.getInetAddress());
+                
+                new Thread(() -> handleClient(clientSocket)).start();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private static void handleClient(Socket clientSocket) {
+        try (
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+            DataOutputStream dataOut = new DataOutputStream(clientSocket.getOutputStream())
+        ) {
+            String fileName = in.readLine();
+            System.out.println("File requested: " + fileName);
+            
+            File file = new File(fileName);
+            if (file.exists() && !file.isDirectory()) {
+                out.println("FILE_EXISTS");
+                out.println(file.length());
+                
+                try (FileInputStream fis = new FileInputStream(file)) {
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    while ((bytesRead = fis.read(buffer)) != -1) {
+                        dataOut.write(buffer, 0, bytesRead);
+                    }
+                }
+                System.out.println("File sent successfully");
+            } else {
+                out.println("FILE_NOT_FOUND");
+                System.out.println("File not found");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                clientSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}</code></pre>
+
+            <h3>FTPClient.java</h3>
+            <div class="file-info">📄 01_FTP_Client/FTPClient.java</div>
+            <pre><code class="language-java">import java.io.*;
+import java.net.*;
+
+public class FTPClient {
+    public static void main(String[] args) {
+        String serverAddress = "localhost";
+        int serverPort = 5000;
+        String fileName = "test.txt";
+        
+        try (Socket socket = new Socket(serverAddress, serverPort)) {
+            System.out.println("Connected to FTP Server");
+            
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            DataInputStream dataIn = new DataInputStream(socket.getInputStream());
+            
+            out.println(fileName);
+            
+            String response = in.readLine();
+            if ("FILE_EXISTS".equals(response)) {
+                long fileSize = Long.parseLong(in.readLine());
+                System.out.println("Receiving file: " + fileName + " (" + fileSize + " bytes)");
+                
+                try (FileOutputStream fos = new FileOutputStream("downloaded_" + fileName)) {
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    long totalBytesRead = 0;
+                    
+                    while (totalBytesRead < fileSize && (bytesRead = dataIn.read(buffer, 0, 
+                            (int)Math.min(buffer.length, fileSize - totalBytesRead))) != -1) {
+                        fos.write(buffer, 0, bytesRead);
+                        totalBytesRead += bytesRead;
+                    }
+                }
+                System.out.println("File downloaded successfully");
+            } else {
+                System.out.println("File not found on server");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+        </div>
+
+        <!-- 02 DNS Name Server -->
+        <div class="section" id="dns">
+            <h2>02 - DNS Name Server</h2>
+            <p>A Domain Name System server that resolves domain names to IP addresses.</p>
+            
+            <h3>DNS.java</h3>
+            <div class="file-info">📄 02_DNS_Name_Server/DNS.java</div>
+            <pre><code class="language-java">import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class DNS {
+    private static Map&lt;String, String&gt; dnsTable = new HashMap&lt;&gt;();
+    
+    static {
+        dnsTable.put("google.com", "142.250.192.46");
+        dnsTable.put("facebook.com", "157.240.241.35");
+        dnsTable.put("github.com", "140.82.121.4");
+        dnsTable.put("stackoverflow.com", "151.101.129.69");
+        dnsTable.put("example.com", "93.184.216.34");
+    }
+    
+    public static void main(String[] args) {
+        try (ServerSocket serverSocket = new ServerSocket(5353)) {
+            System.out.println("DNS Server started on port 5353");
+            
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                new Thread(() -> handleClient(clientSocket)).start();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private static void handleClient(Socket clientSocket) {
+        try (
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)
+        ) {
+            String domain = in.readLine();
+            System.out.println("DNS Query: " + domain);
+            
+            String ipAddress = dnsTable.get(domain);
+            if (ipAddress != null) {
+                out.println(ipAddress);
+                System.out.println("Resolved: " + domain + " -> " + ipAddress);
+            } else {
+                out.println("DOMAIN_NOT_FOUND");
+                System.out.println("Domain not found: " + domain);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                clientSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}</code></pre>
+        </div>
+
+        <!-- 03 Chat Server -->
+        <div class="section" id="chat">
+            <h2>03 - Chat Server</h2>
+            <p>A multi-client chat server supporting real-time messaging.</p>
+            
+            <h3>ChatServer.java</h3>
+            <div class="file-info">📄 03_Chat_Server/ChatServer.java</div>
+            <pre><code class="language-java">import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class ChatServer {
+    private static Set&lt;ClientHandler&gt; clientHandlers = new HashSet&lt;&gt;();
+    
+    public static void main(String[] args) {
+        try (ServerSocket serverSocket = new ServerSocket(6000)) {
+            System.out.println("Chat Server started on port 6000");
+            
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                System.out.println("New client connected: " + clientSocket.getInetAddress());
+                
+                ClientHandler clientHandler = new ClientHandler(clientSocket);
+                clientHandlers.add(clientHandler);
+                new Thread(clientHandler).start();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    static class ClientHandler implements Runnable {
+        private Socket socket;
+        private PrintWriter out;
+        private BufferedReader in;
+        private String username;
+        
+        public ClientHandler(Socket socket) {
+            this.socket = socket;
+        }
+        
+        @Override
+        public void run() {
+            try {
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                out = new PrintWriter(socket.getOutputStream(), true);
+                
+                out.println("Enter your username:");
+                username = in.readLine();
+                System.out.println(username + " joined the chat");
+                broadcast(username + " joined the chat", this);
+                
+                String message;
+                while ((message = in.readLine()) != null) {
+                    System.out.println(username + ": " + message);
+                    broadcast(username + ": " + message, this);
+                }
+            } catch (IOException e) {
+                System.out.println(username + " disconnected");
+            } finally {
+                cleanup();
+            }
+        }
+        
+        private void broadcast(String message, ClientHandler sender) {
+            for (ClientHandler client : clientHandlers) {
+                if (client != sender) {
+                    client.out.println(message);
+                }
+            }
+        }
+        
+        private void cleanup() {
+            clientHandlers.remove(this);
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}</code></pre>
+
+            <h3>ChatClient.java</h3>
+            <div class="file-info">📄 03_Chat_Server/ChatClient.java</div>
+            <pre><code class="language-java">import java.io.*;
+import java.net.*;
+import java.util.Scanner;
+
+public class ChatClient {
+    public static void main(String[] args) {
+        String serverAddress = "localhost";
+        int serverPort = 6000;
+        
+        try (Socket socket = new Socket(serverAddress, serverPort)) {
+            System.out.println("Connected to Chat Server");
+            
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            Scanner scanner = new Scanner(System.in);
+            
+            new Thread(() -> {
+                try {
+                    String message;
+                    while ((message = in.readLine()) != null) {
+                        System.out.println(message);
+                    }
+                } catch (IOException e) {
+                    System.out.println("Disconnected from server");
+                }
+            }).start();
+            
+            String userInput;
+            while ((userInput = scanner.nextLine()) != null) {
+                out.println(userInput);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+        </div>
+
+        <!-- 05 RPC Date Service -->
+        <div class="section" id="rpc-date">
+            <h2>05 - RPC Date Service</h2>
+            <p>Remote Procedure Call implementation for a date service.</p>
+            
+            <h3>DateService.java</h3>
+            <div class="file-info">📄 05_RPC_DateService/DateService.java</div>
+            <pre><code class="language-java">import javax.jws.WebMethod;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+
+@WebService(targetNamespace = "http://date/")
+@SOAPBinding(style = SOAPBinding.Style.RPC)
+public interface DateService {
+    @WebMethod
+    String getCurrentDate();
+    
+    @WebMethod
+    String getCurrentTime();
+    
+    @WebMethod
+    String getCurrentDateTime();
+}</code></pre>
+
+            <h3>DateServiceImpl.java</h3>
+            <div class="file-info">📄 05_RPC_DateService/DateServiceImpl.java</div>
+            <pre><code class="language-java">import javax.jws.WebService;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+@WebService(
+    serviceName = "DateService",
+    endpointInterface = "DateService",
+    targetNamespace = "http://date/"
+)
+public class DateServiceImpl implements DateService {
+    public String getCurrentDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(new Date());
+    }
+    
+    public String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        return sdf.format(new Date());
+    }
+    
+    public String getCurrentDateTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(new Date());
+    }
+}</code></pre>
+
+            <h3>DateServer.java</h3>
+            <div class="file-info">📄 05_RPC_DateService/DateServer.java</div>
+            <pre><code class="language-java">import javax.xml.ws.Endpoint;
+
+public class DateServer {
+    public static void main(String[] args) {
+        Endpoint.publish("http://localhost:7779/ws/date", new DateServiceImpl());
+        System.out.println("Date Service published...");
+    }
+}</code></pre>
+
+            <h3>DateClient.java</h3>
+            <div class="file-info">📄 05_RPC_DateService/DateClient.java</div>
+            <pre><code class="language-java">import java.net.URL;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
+
+public class DateClient {
+    public static void main(String[] args) throws Exception {
+        URL url = new URL("http://localhost:7779/ws/date?wsdl");
+        QName qname = new QName("http://date/", "DateService");
+        Service service = Service.create(url, qname);
+        DateService ds = service.getPort(DateService.class);
+        
+        System.out.println("Current Date: " + ds.getCurrentDate());
+        System.out.println("Current Time: " + ds.getCurrentTime());
+        System.out.println("Current DateTime: " + ds.getCurrentDateTime());
+    }
+}</code></pre>
+        </div>
+
+        <!-- 06 RPC Hello World -->
+        <div class="section" id="rpc-hello">
+            <h2>06 - RPC Hello World</h2>
+            <p>Simple RMI Hello World implementation.</p>
+            
+            <h3>HelloWorld.java</h3>
+            <div class="file-info">📄 06_RPC_HelloWorld/HelloWorld.java</div>
+            <pre><code class="language-java">import javax.jws.WebMethod;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+
+@WebService(targetNamespace = "http://hello/")
+@SOAPBinding(style = SOAPBinding.Style.RPC)
+public interface HelloWorld {
+    @WebMethod
+    String sayHello(String name);
+}</code></pre>
+
+            <h3>HelloWorldImpl.java</h3>
+            <div class="file-info">📄 06_RPC_HelloWorld/HelloWorldImpl.java</div>
+            <pre><code class="language-java">import javax.jws.WebService;
+
+@WebService(
+    serviceName = "HelloWorld",
+    endpointInterface = "HelloWorld",
+    targetNamespace = "http://hello/"
+)
+public class HelloWorldImpl implements HelloWorld {
+    public String sayHello(String name) {
+        return "Hello " + name + " from RPC Service!";
+    }
+}</code></pre>
+
+            <h3>Publisher.java</h3>
+            <div class="file-info">📄 06_RPC_HelloWorld/Publisher.java</div>
+            <pre><code class="language-java">import javax.xml.ws.Endpoint;
+
+public class Publisher {
+    public static void main(String[] args) {
+        Endpoint.publish("http://localhost:7779/ws/hello", new HelloWorldImpl());
+        System.out.println("Service published...");
+    }
+}</code></pre>
+
+            <h3>HelloWorldClient.java</h3>
+            <div class="file-info">📄 06_RPC_HelloWorld/HelloWorldClient.java</div>
+            <pre><code class="language-java">import java.net.URL;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
+
+public class HelloWorldClient {
+    public static void main(String[] args) throws Exception {
+        URL url = new URL("http://localhost:7779/ws/hello?wsdl");
+        QName qname = new QName("http://hello/", "HelloWorld");
+        Service service = Service.create(url, qname);
+        HelloWorld hw = service.getPort(HelloWorld.class);
+        System.out.println(hw.sayHello("Distributed Systems"));
+    }
+}</code></pre>
+        </div>
+
+        <!-- 07 MapReduce WordCount -->
+        <div class="section" id="mapreduce">
+            <h2>07 - MapReduce WordCount</h2>
+            <p>MapReduce implementation for word counting.</p>
+            
+            <h3>WordCount.java</h3>
+            <div class="file-info">📄 07_MapReduce_WordCount/WordCount.java</div>
+            <pre><code class="language-java">import java.io.*;
+import java.util.*;
+
+public class WordCount {
+    
+    public static class Mapper {
+        public List&lt;Map.Entry&lt;String, Integer&gt;&gt; map(String line) {
+            List&lt;Map.Entry&lt;String, Integer&gt;&gt; result = new ArrayList&lt;&gt;();
+            String[] words = line.toLowerCase().split("\\W+");
+            
+            for (String word : words) {
+                if (!word.isEmpty()) {
+                    result.add(new AbstractMap.SimpleEntry&lt;&gt;(word, 1));
+                }
+            }
+            return result;
+        }
+    }
+    
+    public static class Reducer {
+        public Map&lt;String, Integer&gt; reduce(List&lt;Map.Entry&lt;String, Integer&gt;&gt; mappedData) {
+            Map&lt;String, Integer&gt; result = new HashMap&lt;&gt;();
+            
+            for (Map.Entry&lt;String, Integer&gt; entry : mappedData) {
+                result.put(entry.getKey(), result.getOrDefault(entry.getKey(), 0) + entry.getValue());
+            }
+            return result;
+        }
+    }
+    
+    public static void main(String[] args) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+            Mapper mapper = new Mapper();
+            Reducer reducer = new Reducer();
+            
+            List&lt;Map.Entry&lt;String, Integer&gt;&gt; mappedData = new ArrayList&lt;&gt;();
+            String line;
+            
+            while ((line = reader.readLine()) != null) {
+                mappedData.addAll(mapper.map(line));
+            }
+            reader.close();
+            
+            Map&lt;String, Integer&gt; result = reducer.reduce(mappedData);
+            
+            System.out.println("Word Count Results:");
+            result.entrySet().stream()
+                .sorted(Map.Entry.&lt;String, Integer&gt;comparingByValue().reversed())
+                .forEach(entry -&gt; System.out.println(entry.getKey() + ": " + entry.getValue()));
+                
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+        </div>
+
+        <!-- 08 Three Tier Architecture -->
+        <div class="section" id="three-tier">
+            <h2>08 - Three Tier Architecture</h2>
+            <p>Examples of three-tier architecture implementations.</p>
+            
+            <h3>Banking Application</h3>
+            <div class="file-info">📄 08_Three_Tier_Architecture/01_Banking/BankingApp.java</div>
+            <pre><code class="language-java">import java.util.Scanner;
+
+public class BankingApp {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        BankService service = new BankService();
+        
+        while (true) {
+            System.out.println("\n=== Banking System ===");
+            System.out.println("1. Create Account");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Check Balance");
+            System.out.println("5. Exit");
+            System.out.print("Choose option: ");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter account number: ");
+                    String accNo = scanner.nextLine();
+                    System.out.print("Enter account holder name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter initial balance: ");
+                    double balance = scanner.nextDouble();
+                    service.createAccount(accNo, name, balance);
+                    break;
+                case 2:
+                    System.out.print("Enter account number: ");
+                    accNo = scanner.nextLine();
+                    System.out.print("Enter amount to deposit: ");
+                    double amount = scanner.nextDouble();
+                    service.deposit(accNo, amount);
+                    break;
+                case 3:
+                    System.out.print("Enter account number: ");
+                    accNo = scanner.nextLine();
+                    System.out.print("Enter amount to withdraw: ");
+                    amount = scanner.nextDouble();
+                    service.withdraw(accNo, amount);
+                    break;
+                case 4:
+                    System.out.print("Enter account number: ");
+                    accNo = scanner.nextLine();
+                    service.checkBalance(accNo);
+                    break;
+                case 5:
+                    System.out.println("Thank you for using Banking System!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid option!");
+            }
+        }
+    }
+}</code></pre>
+
+            <h3>E-Commerce Application</h3>
+            <div class="file-info">📄 08_Three_Tier_Architecture/02_ECommerce/ECommerceApp.java</div>
+            <pre><code class="language-java">import java.util.Scanner;
+
+public class ECommerceApp {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ECommerceService service = new ECommerceService();
+        
+        // Add some sample products
+        service.addProduct("P001", "Laptop", 50000, 10);
+        service.addProduct("P002", "Mouse", 500, 50);
+        service.addProduct("P003", "Keyboard", 1500, 30);
+        
+        while (true) {
+            System.out.println("\n=== E-Commerce System ===");
+            System.out.println("1. View Products");
+            System.out.println("2. Add to Cart");
+            System.out.println("3. View Cart");
+            System.out.println("4. Place Order");
+            System.out.println("5. Exit");
+            System.out.print("Choose option: ");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            
+            switch (choice) {
+                case 1:
+                    service.viewProducts();
+                    break;
+                case 2:
+                    System.out.print("Enter product ID: ");
+                    String productId = scanner.nextLine();
+                    System.out.print("Enter quantity: ");
+                    int quantity = scanner.nextInt();
+                    service.addToCart(productId, quantity);
+                    break;
+                case 3:
+                    service.viewCart();
+                    break;
+                case 4:
+                    service.placeOrder();
+                    break;
+                case 5:
+                    System.out.println("Thank you for shopping!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid option!");
+            }
+        }
+    }
+}</code></pre>
+
+            <h3>Ticket Reservation System</h3>
+            <div class="file-info">📄 08_Three_Tier_Architecture/03_TicketReservation/TicketReservation.java</div>
+            <pre><code class="language-java">import java.util.Scanner;
+
+public class TicketReservation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        TicketService service = new TicketService();
+        
+        // Add some sample movies
+        service.addMovie("M001", "Inception", 100);
+        service.addMovie("M002", "The Matrix", 150);
+        service.addMovie("M003", "Interstellar", 120);
+        
+        while (true) {
+            System.out.println("\n=== Movie Ticket Reservation ===");
+            System.out.println("1. View Movies");
+            System.out.println("2. Book Tickets");
+            System.out.println("3. Cancel Booking");
+            System.out.println("4. View Booking");
+            System.out.println("5. Exit");
+            System.out.print("Choose option: ");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            
+            switch (choice) {
+                case 1:
+                    service.viewMovies();
+                    break;
+                case 2:
+                    System.out.print("Enter movie ID: ");
+                    String movieId = scanner.nextLine();
+                    System.out.print("Enter number of tickets: ");
+                    int tickets = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter your name: ");
+                    String name = scanner.nextLine();
+                    service.bookTickets(movieId, tickets, name);
+                    break;
+                case 3:
+                    System.out.print("Enter booking ID: ");
+                    String bookingId = scanner.nextLine();
+                    service.cancelBooking(bookingId);
+                    break;
+                case 4:
+                    System.out.print("Enter booking ID: ");
+                    bookingId = scanner.nextLine();
+                    service.viewBooking(bookingId);
+                    break;
+                case 5:
+                    System.out.println("Thank you for using Ticket Reservation!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid option!");
+            }
+        }
+    }
+}</code></pre>
+
+            <h3>Student Management System</h3>
+            <div class="file-info">📄 08_Three_Tier_Architecture/04_StudentManagement/StudentManagement.java</div>
+            <pre><code class="language-java">import java.util.Scanner;
+
+public class StudentManagement {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        StudentService service = new StudentService();
+        
+        while (true) {
+            System.out.println("\n=== Student Management System ===");
+            System.out.println("1. Add Student");
+            System.out.println("2. View All Students");
+            System.out.println("3. Search Student");
+            System.out.println("4. Update Student");
+            System.out.println("5. Delete Student");
+            System.out.println("6. Exit");
+            System.out.print("Choose option: ");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter student ID: ");
+                    String id = scanner.nextLine();
+                    System.out.print("Enter student name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter course: ");
+                    String course = scanner.nextLine();
+                    System.out.print("Enter grade: ");
+                    String grade = scanner.nextLine();
+                    service.addStudent(id, name, course, grade);
+                    break;
+                case 2:
+                    service.viewAllStudents();
+                    break;
+                case 3:
+                    System.out.print("Enter student ID: ");
+                    id = scanner.nextLine();
+                    service.searchStudent(id);
+                    break;
+                case 4:
+                    System.out.print("Enter student ID: ");
+                    id = scanner.nextLine();
+                    System.out.print("Enter new grade: ");
+                    grade = scanner.nextLine();
+                    service.updateStudent(id, grade);
+                    break;
+                case 5:
+                    System.out.print("Enter student ID: ");
+                    id = scanner.nextLine();
+                    service.deleteStudent(id);
+                    break;
+                case 6:
+                    System.out.println("Thank you for using Student Management System!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid option!");
+            }
+        }
+    }
+}</code></pre>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🎓 Distributed Systems Lab - Complete Implementation Guide</p>
+        <p>Made with ❤️ using HTML, CSS, and Prism.js</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+</body>
+</html>

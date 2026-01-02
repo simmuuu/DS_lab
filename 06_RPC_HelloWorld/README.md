@@ -13,16 +13,17 @@ Basic "Hello World" Remote Procedure Call (RPC) service demonstrating JAX-WS web
 
 ### HelloWorld.java (Interface)
 ```java
-@WebService                        → Declares web service interface
-@SOAPBinding(style = Style.RPC)    → RPC-style SOAP binding
-@WebMethod                         → Exposes method as web operation
-String sayHello(String name)       → Remote method signature
+@WebService(targetNamespace = "http://hello/")  → Declares web service with namespace
+@SOAPBinding(style = Style.RPC)                  → RPC-style SOAP binding
+@WebMethod                                       → Exposes method as web operation
+String sayHello(String name)                     → Remote method signature
 ```
 
 ### HelloWorldImpl.java (Implementation)
 ```java
-@WebService(endpointInterface = "HelloWorld")  → Implements interface
-targetNamespace = "http://hello/"              → Service namespace
+@WebService(serviceName = "HelloWorld",        → Service name
+            endpointInterface = "HelloWorld",  → Implements interface
+            targetNamespace = "http://hello/") → Service namespace
 ```
 
 ### Publisher.java
@@ -33,11 +34,11 @@ Endpoint.publish("http://localhost:7779/ws/hello", impl)
 
 ### HelloWorldClient.java
 ```java
-URL url = new URL("...?wsdl")           → WSDL location
-QName qname = new QName(ns, service)    → Service identifier
-Service service = Service.create(...)    → Create service
-HelloWorld hw = service.getPort(...)     → Get proxy
-hw.sayHello("name")                      → Call remote method
+URL url = new URL("...?wsdl")                        → WSDL location
+QName qname = new QName("http://hello/", "HelloWorld")  → Service identifier (use HelloWorld, not HelloWorldImplService)
+Service service = Service.create(...)                 → Create service
+HelloWorld hw = service.getPort(...)                  → Get proxy
+hw.sayHello("name")                                   → Call remote method
 ```
 
 ## How to Run

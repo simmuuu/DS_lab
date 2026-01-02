@@ -1,6 +1,7 @@
 import javax.jws.WebService;
 
 @WebService(
+    serviceName = "HelloWorld",
     endpointInterface = "HelloWorld",
     targetNamespace = "http://hello/"
 )

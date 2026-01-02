@@ -13,15 +13,16 @@ Remote Procedure Call (RPC) service that provides date and time functions. Uses 
 
 ### DateService.java (Interface)
 ```java
-@WebService                        → Marks as web service
-@SOAPBinding(style = Style.RPC)    → Uses RPC style binding
-@WebMethod                         → Marks method as remotely callable
+@WebService(targetNamespace = "http://date/")  → Marks as web service with namespace
+@SOAPBinding(style = Style.RPC)                 → Uses RPC style binding
+@WebMethod                                      → Marks method as remotely callable
 ```
 
 ### DateServiceImpl.java (Implementation)
 ```java
-@WebService(endpointInterface = "DateService")  → Links to interface
-targetNamespace = "http://date/"                → SOAP namespace
+@WebService(serviceName = "DateService",        → Service name
+            endpointInterface = "DateService",  → Links to interface
+            targetNamespace = "http://date/")   → SOAP namespace
 SimpleDateFormat                                → Formats date/time
 ```
 
@@ -32,10 +33,10 @@ Endpoint.publish(url, service)    → Publishes service at URL
 
 ### DateClient.java (Consumer)
 ```java
-URL                    → WSDL location
-QName                  → Service qualified name
-Service.create()       → Creates service instance
-service.getPort()      → Gets service proxy
+URL                              → WSDL location
+QName("http://date/", "DateService")  → Service qualified name (use DateService, not DateServiceImplService)
+Service.create()                 → Creates service instance
+service.getPort()                → Gets service proxy
 ```
 
 ## How to Run

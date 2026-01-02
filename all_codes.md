@@ -221,7 +221,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
-@WebService
+@WebService(targetNamespace = "http://date/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public interface DateService {
     @WebMethod
@@ -242,6 +242,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 @WebService(
+    serviceName = "DateService",
     endpointInterface = "DateService",
     targetNamespace = "http://date/"
 )
@@ -284,7 +285,7 @@ import javax.xml.ws.Service;
 public class DateClient {
     public static void main(String[] args) throws Exception {
         URL url = new URL("http://localhost:7779/ws/date?wsdl");
-        QName qname = new QName("http://date/", "DateServiceImplService");
+        QName qname = new QName("http://date/", "DateService");
         Service service = Service.create(url, qname);
         DateService ds = service.getPort(DateService.class);
         
@@ -305,7 +306,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 
-@WebService
+@WebService(targetNamespace = "http://hello/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public interface HelloWorld {
     @WebMethod
@@ -318,6 +319,7 @@ public interface HelloWorld {
 import javax.jws.WebService;
 
 @WebService(
+    serviceName = "HelloWorld",
     endpointInterface = "HelloWorld",
     targetNamespace = "http://hello/"
 )
@@ -349,7 +351,7 @@ import javax.xml.ws.Service;
 public class HelloWorldClient {
     public static void main(String[] args) throws Exception {
         URL url = new URL("http://localhost:7779/ws/hello?wsdl");
-        QName qname = new QName("http://hello/", "HelloWorldImplService");
+        QName qname = new QName("http://hello/", "HelloWorld");
         Service service = Service.create(url, qname);
         HelloWorld hw = service.getPort(HelloWorld.class);
         System.out.println(hw.sayHello("Distributed Systems"));
