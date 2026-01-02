@@ -3,6 +3,11 @@
 2. Chat Server
 3. Online Banking 3-tier
 
+**Set-2**
+1. E-Commerce 3-tier
+2. DNS 
+3. RPC Date Service
+
 **Set-3**
 1. FTP Client
 2. Student Management 3-tier
