@@ -3,6 +3,8 @@
 ## Overview
 Remote Procedure Call (RPC) service that provides date and time functions. Uses JAX-WS (Java API for XML Web Services) with SOAP protocol.
 
+**NEW**: See `/RPC_Stripped_Comparison` folder for examples of what can be stripped from RPC programs while still working!
+
 ## Files
 - **DateService.java** - Service Interface with @WebService annotation
 - **DateServiceImpl.java** - Implementation of the service
@@ -50,6 +52,32 @@ java DateServer
 # Terminal 2 - Run Client
 java DateClient
 ```
+
+---
+
+## What Can Be Stripped from RPC Programs?
+
+Many annotations and attributes in RPC programs are **optional** and can be removed while the program still works:
+
+### Optional Elements (Can Strip):
+1. **targetNamespace** - Auto-generated from package name
+2. **serviceName** - Defaults to ClassName+"Service"  
+3. **endpointInterface** - Not needed if you don't use separate interface
+4. **@WebMethod** - All public methods exposed by default
+5. **@SOAPBinding** - Defaults to DOCUMENT/LITERAL style
+6. **Interface file** - Can define methods directly in implementation
+
+### Required Elements (Cannot Strip):
+1. **@WebService** - Required to mark class as web service
+2. **Endpoint.publish()** - Required to publish the service
+3. **Implementation logic** - The actual business code
+
+### See Working Examples:
+Check the `/RPC_Stripped_Comparison` folder for complete side-by-side examples of:
+- Full version (with all optional elements)
+- Stripped version (minimal code that still works)
+
+**Key Takeaway**: You can reduce RPC code by ~40-60% by stripping optional elements!
 
 ---
 

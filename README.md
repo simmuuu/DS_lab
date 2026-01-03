@@ -2,6 +2,14 @@
 
 A comprehensive collection of Java programs for Distributed Systems lab covering socket programming, RPC, MapReduce, and 3-tier architecture.
 
+## 🆕 NEW: RPC Stripping Guide
+
+**Question**: "In RPC programs, what can we strip out but the program still works?"
+
+📚 **See [`RPC_STRIPPING_GUIDE.md`](RPC_STRIPPING_GUIDE.md)** for complete answer with examples!
+
+**Quick Summary**: You can strip ~60% of RPC code (annotations like `@WebMethod`, `@SOAPBinding`, `targetNamespace`, interfaces) and it still works! See `/RPC_Stripped_Comparison` folder for working examples.
+
 ---
 
 ## 📁 Program Structure
@@ -15,6 +23,7 @@ A comprehensive collection of Java programs for Distributed Systems lab covering
 | 5 | 06_RPC_HelloWorld | RPC Hello World | HelloWorld.java, HelloWorldImpl.java, Publisher.java, HelloWorldClient.java |
 | 6 | 07_MapReduce_WordCount | Hadoop MapReduce | WordCount.java |
 | 7 | 08_Three_Tier_Architecture | 3-Tier Apps | Banking, E-Commerce, Ticket Reservation, Student Management |
+| 8 | **RPC_Stripped_Comparison** | **RPC Code Reduction** | **Full vs Stripped Examples** |
 
 ---
 
