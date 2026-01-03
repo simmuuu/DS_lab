@@ -15,7 +15,7 @@ public class HelloWorldClient {
         // Look for <service name="..."> and targetNamespace="..."
         
         // Example placeholder (UPDATE with actual values from WSDL):
-        String namespace = "http://stripped_version/";  // Check WSDL for actual auto-generated namespace
+        String namespace = "http://example.generated.namespace/";  // REPLACE: Check WSDL for actual auto-generated namespace
         String serviceName = "HelloWorldImplService";
         QName qname = new QName(namespace, serviceName);
         
