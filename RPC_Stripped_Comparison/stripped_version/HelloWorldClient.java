@@ -14,8 +14,8 @@ public class HelloWorldClient {
         // ALWAYS check WSDL first: http://localhost:7780/ws/hello?wsdl
         // Look for <service name="..."> and targetNamespace="..."
         
-        // Example placeholder (UPDATE with actual values from WSDL):
-        String namespace = "http://example.generated.namespace/";  // REPLACE: Check WSDL for actual auto-generated namespace
+        // Example - MUST REPLACE with actual values from WSDL:
+        String namespace = "REPLACE_WITH_ACTUAL_NAMESPACE_FROM_WSDL";
         String serviceName = "HelloWorldImplService";
         QName qname = new QName(namespace, serviceName);
         
@@ -24,4 +24,3 @@ public class HelloWorldClient {
         System.out.println(hw.sayHello("Distributed Systems"));
     }
 }
-
