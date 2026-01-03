@@ -1,0 +1,208 @@
+# RPC Stripped vs Full Comparison
+
+## Quick Reference
+
+| Element | Required? | Can Strip? | Default Behavior |
+|---------|-----------|------------|------------------|
+| `@WebService` | ✅ Required | ❌ No | Marks class as web service |
+| `targetNamespace` | ❌ Optional | ✅ Yes | Auto-generated from package |
+| `serviceName` | ❌ Optional | ✅ Yes | ClassName + "Service" |
+| `endpointInterface` | ❌ Optional | ✅ Yes | Can work without interface |
+| `@WebMethod` | ❌ Optional | ✅ Yes | All public methods exposed |
+| `@SOAPBinding` | ❌ Optional | ✅ Yes | Defaults to DOCUMENT style |
+| `Endpoint.publish()` | ✅ Required | ❌ No | Publishes the service |
+| Service interface | ❌ Optional | ✅ Yes | Can define methods in impl |
+
+## Full Version vs Stripped Version
+
+### Full Version Files
+```
+full_version/
+├── HelloWorld.java          (Interface with @WebService, @SOAPBinding, @WebMethod)
+├── HelloWorldImpl.java      (Implementation with full annotations)
+├── Publisher.java           (Server)
+└── HelloWorldClient.java    (Client)
+```
+
+**Lines of Code**: ~40 lines (with interface)
+
+### Stripped Version Files
+```
+stripped_version/
+├── HelloWorldImpl.java      (Implementation only - no interface needed)
+├── Publisher.java           (Server)
+└── HelloWorldClient.java    (Client - needs adjustment for auto-generated names)
+```
+
+**Lines of Code**: ~25 lines (no interface)
+
+**Code Reduction**: ~37% less code!
+
+## Side-by-Side Comparison
+
+### Service Definition
+
+#### Full Version (with interface)
+```java
+// HelloWorld.java
+@WebService(targetNamespace = "http://hello/")
+@SOAPBinding(style = SOAPBinding.Style.RPC)
+public interface HelloWorld {
+    @WebMethod
+    String sayHello(String name);
+}
+
+// HelloWorldImpl.java
+@WebService(
+    serviceName = "HelloWorld",
+    endpointInterface = "HelloWorld",
+    targetNamespace = "http://hello/"
+)
+public class HelloWorldImpl implements HelloWorld {
+    public String sayHello(String name) {
+        return "Hello " + name + " from RPC Service!";
+    }
+}
+```
+
+#### Stripped Version (no interface)
+```java
+// HelloWorldImpl.java only
+@WebService
+public class HelloWorldImpl {
+    public String sayHello(String name) {
+        return "Hello " + name + " from Stripped RPC Service!";
+    }
+}
+```
+
+### WSDL Differences
+
+#### Full Version WSDL
+```xml
+<definitions targetNamespace="http://hello/" ...>
+  <service name="HelloWorld">
+    <port name="HelloWorldPort" ...>
+      ...
+    </port>
+  </service>
+</definitions>
+```
+
+#### Stripped Version WSDL
+```xml
+<definitions targetNamespace="http://stripped_version/" ...>
+  <service name="HelloWorldImplService">
+    <port name="HelloWorldImplPort" ...>
+      ...
+    </port>
+  </service>
+</definitions>
+```
+
+### Client Code Difference
+
+#### Full Version Client
+```java
+QName qname = new QName("http://hello/", "HelloWorld");
+Service service = Service.create(url, qname);
+HelloWorld hw = service.getPort(HelloWorld.class);
+```
+
+#### Stripped Version Client
+```java
+// Must check WSDL for actual namespace and service name
+QName qname = new QName("http://stripped_version/", "HelloWorldImplService");
+Service service = Service.create(url, qname);
+HelloWorldImpl hw = service.getPort(HelloWorldImpl.class);
+```
+
+## What We Stripped
+
+### 1. Interface Definition (HelloWorld.java)
+- **Full Version**: Separate interface file with @WebService
+- **Stripped Version**: No interface needed, define methods directly in implementation
+- **Savings**: Entire file eliminated
+
+### 2. targetNamespace Attribute
+- **Full Version**: `@WebService(targetNamespace = "http://hello/")`
+- **Stripped Version**: `@WebService` (uses auto-generated namespace)
+- **Impact**: WSDL namespace changes but functionality identical
+
+### 3. serviceName Attribute  
+- **Full Version**: `serviceName = "HelloWorld"`
+- **Stripped Version**: Omitted (auto-generates "HelloWorldImplService")
+- **Impact**: Service name in WSDL changes, client must adjust
+
+### 4. endpointInterface Attribute
+- **Full Version**: `endpointInterface = "HelloWorld"`
+- **Stripped Version**: Omitted (no interface to reference)
+- **Impact**: None when interface not used
+
+### 5. @WebMethod Annotations
+- **Full Version**: `@WebMethod` on each method
+- **Stripped Version**: Omitted (public methods auto-exposed)
+- **Impact**: None, same methods exposed
+
+### 6. @SOAPBinding Annotation
+- **Full Version**: `@SOAPBinding(style = SOAPBinding.Style.RPC)`
+- **Stripped Version**: Omitted (uses DOCUMENT style default)
+- **Impact**: SOAP message format slightly different, but functionally equivalent
+
+## Testing Both Versions
+
+### Test Full Version
+```bash
+cd full_version
+javac *.java
+java Publisher       # Terminal 1
+java HelloWorldClient # Terminal 2
+```
+
+### Test Stripped Version
+```bash
+cd stripped_version
+javac *.java
+java Publisher       # Terminal 1
+# Visit http://localhost:7780/ws/hello?wsdl to check service name
+java HelloWorldClient # Terminal 2
+```
+
+### Expected Output (Both Versions)
+```
+Hello Distributed Systems from [Stripped] RPC Service!
+```
+
+## Key Learnings
+
+1. **Minimalism Works**: JAX-WS has sensible defaults that allow minimal code
+2. **Interface is Optional**: For simple services, you don't need a separate interface
+3. **Annotations are Mostly Optional**: Only @WebService is required
+4. **Tradeoff**: Less control over WSDL structure vs cleaner code
+5. **Client Impact**: Stripped version requires client to adapt to auto-generated names
+
+## Recommendation
+
+- **Use Stripped Version For**: Learning, prototyping, internal simple services
+- **Use Full Version For**: Production, interoperability, specific WSDL requirements
+
+## Files Included
+
+```
+RPC_Stripped_Comparison/
+├── README.md                    (This overview document)
+├── COMPARISON.md               (This detailed comparison)
+├── full_version/
+│   ├── HelloWorld.java         (Interface with all annotations)
+│   ├── HelloWorldImpl.java     (Full implementation)
+│   ├── Publisher.java          (Server)
+│   └── HelloWorldClient.java   (Client)
+└── stripped_version/
+    ├── HelloWorldImpl.java     (Minimal implementation)
+    ├── Publisher.java          (Server)
+    └── HelloWorldClient.java   (Client with adjusted QName)
+```
+
+---
+
+**Conclusion**: You can strip ~60% of the annotations and still have a fully functional RPC service!

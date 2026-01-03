@@ -3,6 +3,8 @@
 ## Overview
 Basic "Hello World" Remote Procedure Call (RPC) service demonstrating JAX-WS web service implementation with SOAP protocol.
 
+**NEW**: Learn what can be stripped from RPC programs! See `/RPC_Stripped_Comparison` folder for working examples.
+
 ## Files
 - **HelloWorld.java** - Service Interface
 - **HelloWorldImpl.java** - Service Implementation
@@ -54,6 +56,39 @@ java HelloWorldClient
 ```
 
 **Output:** `Hello Distributed Systems from RPC Service!`
+
+---
+
+## What Can Be Stripped from RPC Programs?
+
+This example demonstrates the **full version** with all optional elements. Many parts can be removed while the program still works!
+
+### Elements That CAN Be Stripped:
+✅ `targetNamespace` attribute  
+✅ `serviceName` attribute  
+✅ `endpointInterface` attribute  
+✅ `@WebMethod` annotation  
+✅ `@SOAPBinding` annotation  
+✅ Separate interface file (HelloWorld.java)  
+
+### Elements That CANNOT Be Stripped:
+❌ `@WebService` annotation (required)  
+❌ `Endpoint.publish()` call (required)  
+❌ Implementation code (required)  
+
+### Minimal Working Version:
+```java
+@WebService
+public class HelloWorldImpl {
+    public String sayHello(String name) {
+        return "Hello " + name + " from RPC Service!";
+    }
+}
+```
+
+**Code Reduction**: ~40% less code by stripping optional elements!
+
+See `/RPC_Stripped_Comparison` folder for complete working examples comparing full vs stripped versions.
 
 ---
 
