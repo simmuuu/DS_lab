@@ -123,8 +123,14 @@ QName qname = new QName("http://hello/", "HelloWorld");
 
 ### Stripped Version Client
 ```java
-// Service name auto-generated as "HelloWorldImplService"
-QName qname = new QName("http://stripped_version/", "HelloWorldImplService");
+// IMPORTANT: Check WSDL for actual auto-generated values
+// Service name will be ClassName + "Service" = "HelloWorldImplService"
+// Namespace is auto-generated based on package (check WSDL for exact value)
+
+// Example (must verify against actual WSDL):
+String namespace = "...";  // Check targetNamespace in WSDL
+String serviceName = "HelloWorldImplService";
+QName qname = new QName(namespace, serviceName);
 ```
 
 **Tip**: Always check the WSDL first to get the correct namespace and service name!

@@ -6,16 +6,22 @@ public class HelloWorldClient {
     public static void main(String[] args) throws Exception {
         URL url = new URL("http://localhost:7780/ws/hello?wsdl");
         
-        // Note: QName must match what's in WSDL
-        // For stripped version: namespace is auto-generated, service name is "HelloWorldImplService"
-        // Check the WSDL at http://localhost:7780/ws/hello?wsdl to get exact values
+        // IMPORTANT: QName values must match what's in the actual WSDL
+        // For stripped version without package:
+        //   - namespace: JAX-WS auto-generates (check WSDL for exact value)
+        //   - service name: "HelloWorldImplService" (ClassName + "Service")
         
-        // This will work if you check WSDL first and update accordingly
-        // Typically: namespace="http://stripped_version/" and service="HelloWorldImplService"
-        QName qname = new QName("http://stripped_version/", "HelloWorldImplService");
+        // ALWAYS check WSDL first: http://localhost:7780/ws/hello?wsdl
+        // Look for <service name="..."> and targetNamespace="..."
+        
+        // Example placeholder (UPDATE with actual values from WSDL):
+        String namespace = "http://stripped_version/";  // Check WSDL for actual auto-generated namespace
+        String serviceName = "HelloWorldImplService";
+        QName qname = new QName(namespace, serviceName);
         
         Service service = Service.create(url, qname);
         HelloWorldImpl hw = service.getPort(HelloWorldImpl.class);
         System.out.println(hw.sayHello("Distributed Systems"));
     }
 }
+
